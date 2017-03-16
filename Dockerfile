@@ -1,4 +1,4 @@
-FROM php:7.1-fpm
+FROM php:5.6-fpm
 
 MAINTAINER Caleb Favor <caleb@drumeo.com>
 
@@ -37,6 +37,8 @@ RUN curl -s http://getcomposer.org/installer | php && \
     mv composer.phar /usr/local/bin/composer
 
 RUN usermod -u 1000 www-data
+RUN export TERM=xterm
+RUN chmod 777 -R /var/www
 
 WORKDIR /var/www
 
