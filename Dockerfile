@@ -27,6 +27,12 @@ RUN docker-php-ext-install mcrypt \
     --with-jpeg-dir=/usr/lib \
     --with-freetype-dir=/usr/include/freetype2 && \
     docker-php-ext-install gd
+    
+RUN docker-php-ext-install exif
+RUN docker-php-ext-configure exif \
+            --enable-exif
+
+RUN docker-php-ext-install mysqli
 
 # Add PHP Config
 ADD config/laravel.ini /usr/local/etc/php/conf.d
