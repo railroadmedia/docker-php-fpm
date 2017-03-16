@@ -3,8 +3,9 @@ FROM php:7.1-fpm
 MAINTAINER Caleb Favor <caleb@drumeo.com>
 
 # Software's Installation
-RUN apt-get update \
-  &&apt-get install -y --no-install-recommends \
+RUN apt-get update
+
+RUN apt-get install -y \
         curl \
         libz-dev \
         libjpeg-dev \
@@ -13,17 +14,19 @@ RUN apt-get update \
         libssl-dev \
         libmcrypt-dev \
         nano \
-  &&rm -rf /var/lib/apt/lists/*
+        git
+
+RUN apt-get clean
 
 # Enable PHP Extentions
 RUN docker-php-ext-install mcrypt \
   && docker-php-ext-install pdo_mysql \
+  && docker-php-ext-install pcntl \
   && docker-php-ext-configure gd \
     --enable-gd-native-ttf \
     --with-jpeg-dir=/usr/lib \
     --with-freetype-dir=/usr/include/freetype2 && \
     docker-php-ext-install gd
-
 
 # Add PHP Config
 ADD config/laravel.ini /usr/local/etc/php/conf.d
