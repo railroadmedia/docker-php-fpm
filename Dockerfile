@@ -14,7 +14,8 @@ RUN apt-get install -y \
         libssl-dev \
         libmcrypt-dev \
         nano \
-        git
+        git \
+        dnsutils
 
 RUN apt-get clean
 
@@ -27,7 +28,7 @@ RUN docker-php-ext-install mcrypt \
     --with-jpeg-dir=/usr/lib \
     --with-freetype-dir=/usr/include/freetype2 && \
     docker-php-ext-install gd
-    
+
 RUN docker-php-ext-install exif
 RUN docker-php-ext-configure exif \
             --enable-exif
@@ -44,7 +45,6 @@ RUN curl -s http://getcomposer.org/installer | php && \
 
 RUN usermod -u 1000 www-data
 RUN export TERM=xterm
-RUN chmod 777 -R /var/www
 
 WORKDIR /var/www
 
