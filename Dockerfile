@@ -20,7 +20,9 @@ RUN apt-get install -y \
 RUN apt-get clean
 
 # Enable PHP Extentions
-RUN docker-php-ext-install mcrypt \
+RUN docker-php-ext-configure opcache --enable-opcache \
+     docker-php-ext-install opcache \
+     docker-php-ext-install mcrypt \
   && docker-php-ext-install pdo_mysql \
   && docker-php-ext-install pcntl \
   && docker-php-ext-configure gd \
