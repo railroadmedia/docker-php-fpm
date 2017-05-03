@@ -22,6 +22,7 @@ RUN apt-get clean
 # Enable PHP Extentions
 RUN docker-php-ext-install mcrypt \
   && docker-php-ext-install pdo_mysql \
+     docker-php-ext-install gettext \
   && docker-php-ext-install pcntl \
   && docker-php-ext-configure gd \
     --enable-gd-native-ttf \
