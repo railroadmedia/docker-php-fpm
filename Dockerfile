@@ -42,7 +42,7 @@ RUN docker-php-ext-install gettext
 
 # Add PHP Config
 ADD config/laravel.ini /usr/local/etc/php/conf.d
-ADD config/laravel.pool.conf /usr/local/etc/php-fpm.d/
+ADD config/www.conf /usr/local/etc/php-fpm.d/www.conf
 
 # Install Composer
 RUN curl -s http://getcomposer.org/installer | php && \
